@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Письмо от вашей компании</title>
+    <style>
+        body {{
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin: 0;
+        }}
+        .container {{
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }}
+        h1 {{
+            color: #1e90ff;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }}
+        h2 {{
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }}
+        p {{
+            color: #666;
+            line-height: 1.5;
+        }}
+        a {{
+            color: #1e90ff;
+            text-decoration: none;
+            font-weight: bold;
+        }}
+        a:hover {{
+            text-decoration: underline;
+        }}
+        .highlight {{
+            color: #ff4500;
+            font-weight: bold;
+        }}
+        .important {{
+            color: #32cd32;
+            font-weight: bold;
+        }}
+        .footer {{
+            font-size: 0.9em;
+            color: #999;
+            text-align: center;
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }}
+        .signature {{
+            font-weight: bold;
+            margin-top: 20px;
+        }}
+        .logo {{
+            display: block;
+            margin: 20px auto;
+            max-width: 150px;
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Здравствуйте, {name}.</h1>
+
+        <p>Благодарим вас за проявленный интерес к нашей компании.</p>
+
+        <p>Мы рады сообщить вам, что ваша регистрация прошла успешно. Вот что вас ожидает:</p>
+
+        <h2>Программа мероприятия:</h2>
+        <ul>
+            <li>Введение в основные аспекты нашей работы.</li>
+            <li>Обзор доступных услуг и предложений.</li>
+            <li>Ответы на ваши вопросы.</li>
+            <li>Рекомендации по дальнейшему взаимодействию.</li>
+        </ul>
+
+        <h2>Дата и время:</h2>
+        <p><span class="important">{date}, {time}</span></p>
+
+        <p>Пожалуйста, проверьте вашу почту за 30 минут до начала мероприятия. Мы отправим вам ссылку для участия.</p>
+        <p>Также, подготовьте все вопросы, которые хотите обсудить.</p>
+
+        <p>Присоединиться можно по следующей ссылке: <a href="{event_link}" class="highlight">{event_link}</a></p>
+
+        <p>Если у вас возникли вопросы, напишите нам на <a href="mailto:support@yourcompany.com">support@yourcompany.com</a>.</p>
+
+        <p>Хотите узнать больше о наших услугах? Посетите наш сайт <a href="https://yourcompany.com" class="highlight">https://yourcompany.com</a></p>
+
+        <p class="signature">С уважением,<br>Команда вашей компании<br><a href="mailto:info@yourcompany.com">info@yourcompany.com</a></p>
+
+        <img src="cid:company_logo" alt="Company Logo" class="logo">
+    </div>
+
+    <div class="footer">
+        © 2024 Ваша компания. Все права защищены.
+    </div>
+</body>
+</html>
+
+<!--
+    1. Шапка HTML: Включает основные стили для текста и элементов. Простые цвета и шрифты делают письмо аккуратным и профессиональным.
+    2. .highlight: Применяется для выделения ссылок и ключевых фраз.
+    3. .important: Используется для акцентирования важной информации.
+    4. .footer: Включает информацию об авторских правах и размещается внизу письма.
+    5. .logo: Центрирует логотип и задает его максимальную ширину.
+
+    Этот шаблон можно использовать в проекте для создания HTML-сообщений, которые будут отправлены пользователям.
+    Вы можете заменить заполнители {name}, {date}, {time}, и {event_link} соответствующими данными при отправке писем.
+-->

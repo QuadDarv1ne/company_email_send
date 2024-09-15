@@ -1,0 +1,26 @@
+[
+    {
+        "email": "example1@domain.com",
+        "subject": "Добро пожаловать в нашу компанию!",
+        "name": "Иван Иванов",
+        "date": "01.10.2024",
+        "time": "10:00",
+        "event_link": "https://example.com/webinar1"
+    },
+    {
+        "email": "example2@domain.com",
+        "subject": "Подтверждение вашей регистрации",
+        "name": "Мария Петрова",
+        "date": "05.10.2024",
+        "time": "14:00",
+        "event_link": "https://example.com/webinar2"
+    },
+    {
+        "email": "example3@domain.com",
+        "subject": "Приглашение на мероприятие",
+        "name": "Алексей Смирнов",
+        "date": "10.10.2024",
+        "time": "18:00",
+        "event_link": "https://example.com/webinar3"
+    }
+]
