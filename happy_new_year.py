@@ -8,6 +8,7 @@ from jinja2 import Environment, FileSystemLoader
 import os
 import logging
 
+
 # Загрузить переменные окружения из файла .env
 load_dotenv()
 
@@ -25,7 +26,7 @@ if not all([SMTP_SERVER, SMTP_PORT, SMTP_USERNAME, SMTP_PASSWORD]):
 logging.basicConfig(level=logging.INFO)
 
 
-def send_email(to_email, subject, html_message, from_email):
+def send_email(to_email, subject, html_message, from_email, image_path):
     """
     Функция для отправки письма с вложением изображения.
     """
@@ -39,24 +40,38 @@ def send_email(to_email, subject, html_message, from_email):
     msg.attach(html_part)
 
     # Прикрепить изображение новогодней открытки
-    try:
-        with open(r'img\New_Year_2025.jpg', 'rb') as img_file:
-            img = MIMEImage(img_file.read())
-            img.add_header('Content-ID', '<header_image>')  # Используется в HTML-шаблоне как cid:header_image
-            img.add_header('Content-Disposition', 'inline', filename='New_Year_2025.jpg')
-            msg.attach(img)
-    except FileNotFoundError:
-        logging.error("Изображение 'New_Year_2025.jpg' не найдено!")
+    attach_image(msg, image_path)
 
     # Подключение к серверу SMTP
+    send_via_smtp(msg, to_email, from_email)
+
+
+def attach_image(msg, image_path):
+    """
+    Функция для прикрепления изображения к письму.
+    """
+    try:
+        with open(image_path, 'rb') as img_file:
+            img = MIMEImage(img_file.read())
+            img.add_header('Content-ID', '<header_image>')  # Используется в HTML-шаблоне как cid:header_image
+            img.add_header('Content-Disposition', 'inline', filename=os.path.basename(image_path))
+            msg.attach(img)
+    except FileNotFoundError:
+        logging.error(f"Изображение '{image_path}' не найдено")
+
+
+def send_via_smtp(msg, to_email, from_email):
+    """
+    Функция для отправки письма через SMTP сервер.
+    """
     try:
         with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
             server.starttls()  # Защищенное соединение
             server.login(SMTP_USERNAME, SMTP_PASSWORD)
             server.send_message(msg)
-            logging.info(f"Email sent to {to_email}")
+            logging.info(f"Email отправлен на {to_email}")
     except Exception as e:
-        logging.error(f"Failed to send email to {to_email}: {e}")
+        logging.error(f"Ошибка при отправке email на {to_email}: {e}")
 
 
 def load_email_data(file_path):
@@ -81,8 +96,7 @@ def generate_html_message(name, subject):
     try:
         template = template_env.get_template('email_template.html')
         # Рендеринг шаблона с данными
-        html_message = template.render(name=name, subject=subject)
-        return html_message
+        return template.render(name=name, subject=subject)
     except Exception as e:
         logging.error(f"Ошибка при рендеринге шаблона: {e}")
         exit()
@@ -95,7 +109,7 @@ def main():
     email_data = load_email_data('data/emails_2025.json')
 
     for entry in email_data:
-        # Пропускаем записи с пустыми полями email или name
+        # Пропускаем записи с недостающими полями email или name
         if not entry.get('email') or not entry.get('name') or not entry.get('subject'):
             logging.warning(f"Пропущена запись с недостающими данными: {entry}")
             continue
@@ -103,11 +117,13 @@ def main():
         # Генерация HTML-сообщения
         html_message = generate_html_message(entry['name'], entry['subject'])
 
+        # Отправка email
         send_email(
             to_email=entry['email'],
             subject=entry['subject'],
             html_message=html_message,
-            from_email=SMTP_USERNAME
+            from_email=SMTP_USERNAME,
+            image_path=entry['img_postcard']
         )
 
 
