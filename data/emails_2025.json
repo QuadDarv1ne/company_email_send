@@ -1,0 +1,26 @@
+[
+    {
+        "email": "georgdan28@mail.ru",
+        "subject": "Открытка с наступающим новым 2025 годом",
+        "name": "Данилов Георгий",
+        "date": "31.12.2024",
+        "time": "24:00",
+        "img_postcard": "img/New_Year_2025.jpg"
+    },
+    {
+        "email": "maksimqwe42@mail.ru",
+        "subject": "Открытка с наступающим новым 2025 годом",
+        "name": "Дуплей Максим",
+        "date": "31.12.2024",
+        "time": "24:00",
+        "img_postcard": "img/New_Year_2025.jpg"
+    },
+    {
+        "email": "email_sample@mail.ru",
+        "subject": "Открытка с наступающим новым 2025 годом",
+        "name": "email_sample@mail.ru",
+        "date": "31.12.2024",
+        "time": "24:00",
+        "img_postcard": "img/New_Year_2025.jpg"
+    }
+]
